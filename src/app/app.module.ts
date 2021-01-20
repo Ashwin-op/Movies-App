@@ -1,23 +1,28 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+
+import {NbInputModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
-import {NbEvaIconsModule} from '@nebular/eva-icons';
+
+import {MoviesListComponent} from './pages/movies-list/movies-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MoviesListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     NbThemeModule.forRoot({name: 'dark'}),
     NbLayoutModule,
-    NbEvaIconsModule
+    NbInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
