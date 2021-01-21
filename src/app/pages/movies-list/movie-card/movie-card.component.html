@@ -11,6 +11,12 @@
   <nb-card-footer>
     <div>
       <p>{{movie.Plot}}</p>
+      <div class="movie-details">
+        <div class="movie-rating">
+          <nb-icon icon="star"></nb-icon>&nbsp;
+          <span>{{movie.imdbRating}}</span>
+        </div>
+      </div>
     </div>
   </nb-card-footer>
 </nb-card>

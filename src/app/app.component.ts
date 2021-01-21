@@ -6,5 +6,11 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Movies-App';
+
+  date: Date;
+
+  constructor() {
+    this.date = new Date();
+  }
+
 }

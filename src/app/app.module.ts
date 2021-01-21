@@ -22,12 +22,14 @@ import {AppComponent} from './app.component';
 
 import {MoviesListComponent} from './pages/movies-list/movies-list.component';
 import {MovieCardComponent} from './pages/movies-list/movie-card/movie-card.component';
+import {BookmarkedMoviesComponent} from './pages/bookmarked-movies/bookmarked-movies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesListComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    BookmarkedMoviesComponent
   ],
   imports: [
     BrowserModule,
