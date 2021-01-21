@@ -11,6 +11,10 @@
   </form>
 
   <div class="movie-list">
-    <app-movie-card *ngFor="let movie of searchMovies" [movie]="movie"></app-movie-card>
+    <app-movie-card
+      (bookmarkEvent)="onBookmark(movie)"
+      *ngFor="let movie of searchMovies"
+      [bookmarkedMovieIds]="bookmarkedMovies"
+      [movie]="movie"></app-movie-card>
   </div>
 </div>

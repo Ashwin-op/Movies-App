@@ -16,6 +16,10 @@
           <nb-icon icon="star"></nb-icon>&nbsp;
           <span>{{movie.imdbRating}}</span>
         </div>
+        <div class="bookmark">
+          <nb-icon (click)="onBookmark()"
+                   icon="{{bookmarkedMovieIds.includes(movie.imdbID) ? 'bookmark' : 'bookmark-outline'}}"></nb-icon>
+        </div>
       </div>
     </div>
   </nb-card-footer>

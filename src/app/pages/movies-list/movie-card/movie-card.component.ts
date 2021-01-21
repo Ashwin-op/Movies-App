@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Movie} from '../../../shared/models/movie.model';
 
 @Component({
@@ -8,7 +8,12 @@ import {Movie} from '../../../shared/models/movie.model';
 })
 export class MovieCardComponent implements OnInit {
 
+  isBookmarked: boolean;
+
   @Input() movie: Movie;
+  @Input() bookmarkedMovieIds: string[];
+
+  @Output() bookmarkEvent: EventEmitter<void> = new EventEmitter();
 
   constructor() {
   }
@@ -23,4 +28,7 @@ export class MovieCardComponent implements OnInit {
     return this.movie.Poster;
   }
 
+  onBookmark(): void {
+    this.bookmarkEvent.emit();
+  }
 }

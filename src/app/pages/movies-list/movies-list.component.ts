@@ -12,11 +12,13 @@ export class MoviesListComponent implements OnInit {
 
   searchStr: string;
   searchMovies: Movie[];
+  bookmarkedMovies: string[];
 
   constructor(private omdbApiService: OmdbApiService, private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
+    this.bookmarkedMovies = this.getLocalStorage() || new Array<string>();
   }
 
   getMovies(): void {
@@ -29,7 +31,7 @@ export class MoviesListComponent implements OnInit {
               .subscribe(result => this.searchMovies.push(result));
           });
         } catch (e) {
-          this.showToast('warning');
+          this.showToast('warning', 'Not a valid search word!');
         }
       });
   }
@@ -38,8 +40,24 @@ export class MoviesListComponent implements OnInit {
     this.getMovies();
   }
 
-  showToast(status: NbComponentStatus): void {
-    this.toastrService.show('Not a valid search word!', `Toast: Error`, {status});
+  showToast(status: NbComponentStatus, message: string): void {
+    this.toastrService.show(message, `Toast: Error`, {status});
   }
 
+  onBookmark(movie: Movie): void {
+    if (this.bookmarkedMovies.includes(movie.imdbID)) {
+      this.bookmarkedMovies.splice(this.bookmarkedMovies.indexOf(movie.imdbID), 1);
+    } else {
+      this.bookmarkedMovies.push(movie.imdbID);
+    }
+    this.setLocalStorage(this.bookmarkedMovies);
+  }
+
+  setLocalStorage(ids: string[]): void {
+    localStorage.setItem('BookmarkedMovies', JSON.stringify(ids));
+  }
+
+  getLocalStorage(): any {
+    return JSON.parse(localStorage.getItem('BookmarkedMovies'));
+  }
 }

@@ -13,4 +13,12 @@ nb-card {
       width: 100%;
     }
   }
+
+  nb-card-footer {
+    .movie-details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 }
