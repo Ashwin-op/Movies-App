@@ -12,9 +12,9 @@
 
   <div class="movie-list">
     <app-movie-card
-      (bookmarkEvent)="onBookmark(movie)"
       *ngFor="let movie of searchMovies"
-      [bookmarkedMovieIds]="bookmarkedMovies"
+      (bookmarkEvent)="onBookmark(movie)"
+      [bookmarkedMovies]="bookmarkedMovies"
       [movie]="movie"></app-movie-card>
   </div>
 </div>

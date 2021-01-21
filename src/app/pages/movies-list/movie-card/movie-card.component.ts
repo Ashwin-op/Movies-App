@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+
 import {Movie} from '../../../shared/models/movie.model';
 
 @Component({
@@ -8,10 +9,9 @@ import {Movie} from '../../../shared/models/movie.model';
 })
 export class MovieCardComponent implements OnInit {
 
-  isBookmarked: boolean;
-
   @Input() movie: Movie;
-  @Input() bookmarkedMovieIds: string[];
+  @Input() bookmarkedMovies: string[];
+  @Input() showBookmark = true;
 
   @Output() bookmarkEvent: EventEmitter<void> = new EventEmitter();
 
@@ -23,9 +23,13 @@ export class MovieCardComponent implements OnInit {
 
   getImage(): string {
     if (this.movie.Poster === 'N/A') {
-      return 'https://picsum.photos/200/250';
+      return 'https://picsum.photos/id/866/200/250';
     }
     return this.movie.Poster;
+  }
+
+  getIcon(): string {
+    return this.bookmarkedMovies.includes(this.movie.imdbID) ? 'bookmark' : 'bookmark-outline';
   }
 
   onBookmark(): void {

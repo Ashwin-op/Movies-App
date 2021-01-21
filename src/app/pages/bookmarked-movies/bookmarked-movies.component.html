@@ -1,1 +1,7 @@
-<p>bookmarked-movies works!</p>
+<div class="movie-list">
+  <app-movie-card
+    *ngFor="let movie of movieDetails"
+    [bookmarkedMovies]="bookmarkedMovies"
+    [movie]="movie"
+    [showBookmark]="false"></app-movie-card>
+</div>

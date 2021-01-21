@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NbComponentStatus, NbToastrService} from '@nebular/theme';
+
 import {OmdbApiService} from '../../services/omdb-api.service';
 import {Movie} from '../../shared/models/movie.model';
+import {getLocalStorage, setLocalStorage} from '../../shared/localStorage';
 
 @Component({
   selector: 'app-movies-list',
@@ -18,7 +20,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bookmarkedMovies = this.getLocalStorage() || new Array<string>();
+    this.bookmarkedMovies = getLocalStorage() || new Array<string>();
   }
 
   getMovies(): void {
@@ -41,23 +43,17 @@ export class MoviesListComponent implements OnInit {
   }
 
   showToast(status: NbComponentStatus, message: string): void {
-    this.toastrService.show(message, `Toast: Error`, {status});
+    this.toastrService.show(message, `Information`, {status});
   }
 
   onBookmark(movie: Movie): void {
     if (this.bookmarkedMovies.includes(movie.imdbID)) {
       this.bookmarkedMovies.splice(this.bookmarkedMovies.indexOf(movie.imdbID), 1);
+      this.showToast('danger', 'Bookmark deleted!');
     } else {
       this.bookmarkedMovies.push(movie.imdbID);
+      this.showToast('success', 'Bookmark added!');
     }
-    this.setLocalStorage(this.bookmarkedMovies);
-  }
-
-  setLocalStorage(ids: string[]): void {
-    localStorage.setItem('BookmarkedMovies', JSON.stringify(ids));
-  }
-
-  getLocalStorage(): any {
-    return JSON.parse(localStorage.getItem('BookmarkedMovies'));
+    setLocalStorage(this.bookmarkedMovies);
   }
 }
