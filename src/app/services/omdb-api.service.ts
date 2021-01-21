@@ -14,14 +14,14 @@ export class OmdbApiService {
   }
 
   searchMovies(term: string): Observable<any> {
-    this.searchUrl = `http://www.omdbapi.com/?apikey=49a0d963&s=${encodeURI(term)}&r=json`;
+    this.searchUrl = `https://www.omdbapi.com/?apikey=49a0d963&s=${encodeURI(term)}&r=json`;
     return this.http
       .get(this.searchUrl)
       .pipe(map((response: any) => response.Search));
   }
 
   searchMovie(id: string): Observable<any> {
-    this.searchUrl = `http://www.omdbapi.com/?apikey=49a0d963&i=${encodeURI(id)}&r=json`;
+    this.searchUrl = `https://www.omdbapi.com/?apikey=49a0d963&i=${encodeURI(id)}&r=json`;
     return this.http
       .get(this.searchUrl)
       .pipe(map((response: any) => response));
