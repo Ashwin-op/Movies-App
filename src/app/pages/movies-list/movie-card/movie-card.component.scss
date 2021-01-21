@@ -1,0 +1,16 @@
+nb-card {
+  nb-card-header {
+    .movie-title {
+      margin-right: 10px;
+    }
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+}

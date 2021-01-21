@@ -1,7 +1,16 @@
 <div>
-  <label>
-    <input fullWidth nbInput placeholder="Search Movies"/>
-  </label>
+  <form (ngSubmit)="onSubmit()">
+    <nb-form-field>
+      <label>
+        <input [(ngModel)]="searchStr" fullWidth name="Search" nbInput placeholder="Search Movies" type="text"/>
+      </label>
+      <button ghost nbButton nbSuffix>
+        <nb-icon icon="search-outline"></nb-icon>
+      </button>
+    </nb-form-field>
+  </form>
 
-  <app-movie-card></app-movie-card>
+  <div class="movie-list">
+    <app-movie-card *ngFor="let movie of searchMovies" [movie]="movie"></app-movie-card>
+  </div>
 </div>
